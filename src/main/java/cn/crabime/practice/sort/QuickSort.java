@@ -1,8 +1,18 @@
 package cn.crabime.practice.sort;
 
+/**
+ * 快速排序
+ *      最坏情况（枢纽元始终为最小或最大的数）时间复杂度O(N^2)
+ *      最好情况（枢纽元正好位于中间）时间复杂度O(N log N)
+ * 快排三步骤：
+ * 一、选枢纽元，保证left < center < right
+ * 二、将枢纽元至于right - 1位置
+ * 三、左右侧与枢纽元比较，小于枢纽元的至于左侧，大于枢纽元的至于右侧
+ * 四、当某一单位数组长度小于10，改为插入排序
+ */
 public class QuickSort {
 
-    private final static int CUTOFF = 20;
+    private final static int CUTOFF = 10;
 
     /**
      * 将数组arr中i与j数值互换
@@ -37,14 +47,14 @@ public class QuickSort {
         for (int p = 1; p < arr.length; p++) {
             int tmp = arr[p];
 
-            for (j = p; j > 0 && arr[j] < arr[j - 1]; j--) {
+            for (j = p; j > 0 && tmp < arr[j - 1]; j--) {
                 arr[j] = arr[j - 1];
             }
             arr[j] = tmp;
         }
     }
 
-    private void quickSort(int[] arr, int left, int right) {
+    public void quickSort(int[] arr, int left, int right) {
         if (left + CUTOFF <= right) {
             int pv = pivot(arr, left, right);
             int i = left, j = right - 1;
