@@ -40,11 +40,11 @@ public class QuickSort {
         return arr[right - 1];
     }
 
-    private void insertSort(int[] arr) {
+    private void insertSort(int[] arr, int left, int right) {
 
         int j;
 
-        for (int p = 1; p < arr.length; p++) {
+        for (int p = left + 1; p < right; p++) {
             int tmp = arr[p];
 
             for (j = p; j > 0 && tmp < arr[j - 1]; j--) {
@@ -72,7 +72,7 @@ public class QuickSort {
                 quickSort(arr, i + 1, right);
             }
         } else {
-            insertSort(arr);
+            insertSort(arr, left, right);
         }
     }
 }
