@@ -66,11 +66,11 @@ public class QuickSort {
                 } else {
                     break;
                 }
-                swapReference(arr, i, right - 1);
-
-                quickSort(arr, left, i - 1);
-                quickSort(arr, i + 1, right);
             }
+            swapReference(arr, i, right - 1);
+
+            quickSort(arr, left, i - 1);
+            quickSort(arr, i + 1, right);
         } else {
             insertSort(arr, left, right);
         }
