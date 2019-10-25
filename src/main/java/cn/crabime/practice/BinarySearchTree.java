@@ -35,8 +35,27 @@ public class BinarySearchTree {
     }
 
     // TODO: 10/24/19 增加二叉查找树删除操作
-    public boolean remove(int data) {
-        return false;
+    public BinaryNode remove(int data) {
+        return remove(data, root);
+    }
+
+    public BinaryNode remove(int data, BinaryNode node) {
+        if (node == null) {
+            return node;
+        }
+
+        if (data > node.data) {
+            node.rightNode = remove(data, node.rightNode);
+        } else if (data < node.data) {
+            node.leftNode = remove(data, node.leftNode);
+        } else if (node.leftNode != null && node.rightNode != null) {
+            node.data = findMin(node.rightNode);
+            node.rightNode = remove(node.data, node.rightNode);
+        } else {
+            node = (node.leftNode != null) ? node.leftNode : node.rightNode;
+        }
+
+        return node;
     }
 
     private BinaryNode insert(int data, BinaryNode node) {
