@@ -41,12 +41,4 @@ public class SortedArrayMedium {
             return res[res.length / 2];
         }
     }
-
-    public static void main(String[] args) {
-        SortedArrayMedium medium = new SortedArrayMedium();
-        int[] a = {2, 3, 4};
-        int[] b = {3, 4, 5};
-        double res = medium.findMedianSortedArrays(b, a);
-        System.out.println("结果为：" + res);
-    }
 }

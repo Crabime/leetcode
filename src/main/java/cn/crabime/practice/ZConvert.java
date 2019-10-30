@@ -42,11 +42,4 @@ public class ZConvert {
         System.out.println("输出结果为：" + ret.toString());
         return ret.toString();
     }
-
-    public static void main(String[] args) {
-        ZConvert zConvert = new ZConvert();
-        String example = "LEETCODEISHIRING";
-        zConvert.convert(example, 4);
-        zConvert.convert(example, 3);
-    }
 }

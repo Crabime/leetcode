@@ -22,14 +22,4 @@ public class RevertInteger {
         System.out.println("数字[" + x + "]转化结果为" + builder.toString());
         return Integer.parseInt(builder.toString());
     }
-
-    public static void main(String[] args) {
-        RevertInteger ri = new RevertInteger();
-        int a = 1230;
-        ri.reverse(a);
-        a = -1230;
-        ri.reverse(a);
-        a = 1534236469;
-        ri.reverse(a);
-    }
 }

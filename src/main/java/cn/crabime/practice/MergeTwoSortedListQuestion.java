@@ -15,49 +15,33 @@ public class MergeTwoSortedListQuestion {
     }
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode node = null;
         if (l1 == null) {
             return l2;
         }
         if (l2 == null) {
             return l1;
         }
-        while (l1.next != null && l2.next != null) {
+
+        ListNode dummyNode = new ListNode(0);
+        ListNode cur = dummyNode;
+        while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                if (node == null) {
-                    node = new ListNode(l1.val);
-                } else {
-                    node.next = new ListNode(l1.val);
-                }
+                cur.next = l1;
+                cur = cur.next;
                 l1 = l1.next;
             } else {
-                if (node == null) {
-                    node = new ListNode(l2.val);
-                } else {
-                    node.next = new ListNode(l2.val);
-                }
+                cur.next = l2;
+                cur = cur.next;
                 l2 = l2.next;
             }
         }
 
-        while (l1.next != null) {
-            node.next = l1;
-            node = node.next;
-            l1 = l1.next;
+        if (l1 != null) {
+            cur.next = l1;
+        } else {
+            cur.next = l2;
         }
 
-        while (l2.next != null) {
-            node.next = l2;
-            node = node.next;
-            l2 = l2.next;
-        }
-        return node;
-    }
-
-    void applyVal(ListNode node, ListNode nextOne) {
-        while (node.next != null) {
-            node = node.next;
-        }
-        node.next = nextOne;
+        return dummyNode.next;
     }
 }

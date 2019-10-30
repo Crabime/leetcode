@@ -34,15 +34,8 @@ public class MaxLenSequence {
         return res;
     }
 
-    private void formatResult(String s) {
+    protected void formatResult(String s) {
         System.out.println("======输入字符串" + s + "======");
         System.out.println(lengthOfLongestSubstring(s));
-    }
-
-    public static void main(String[] args) {
-        MaxLenSequence sequence = new MaxLenSequence();
-        sequence.formatResult("abcabcbb");
-        sequence.formatResult("bbbbb");
-        sequence.formatResult("pwwkew");
     }
 }
