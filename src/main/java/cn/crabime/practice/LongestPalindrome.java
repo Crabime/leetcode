@@ -1,6 +1,70 @@
 package cn.crabime.practice;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * 获取到某个字符串中最长回文子串，如abcbacd，最长回文子串为abcba
+ */
 public class LongestPalindrome {
+
+    /**
+     * 获取可以自由组合的最长回文子串问题
+     * @param s 字符串
+     * @return 生成的回文子串最大长度
+     */
+    public int longestPalindromeLength(String s) {
+        // 防止传入的字符串为空或长度为1
+        if (null == s || s.length() == 0) {
+            return 0;
+        }
+        if (s.length() == 1) {
+            return 1;
+        }
+        Map<Character, Integer> cache = new HashMap<>();
+        int num = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            Integer count = cache.get(c);
+            if (null == count) {
+                cache.put(c, 1);
+            } else {
+                count = count + 1;
+                if (count % 2 == 0) {
+                    num = num + 2;
+                }
+                cache.put(c, count);
+            }
+        }
+
+        // 防止所有字符串出现次数都是偶数，若有一个次数为奇数则num+1
+        Set<Map.Entry<Character, Integer>> entries = cache.entrySet();
+        for (Map.Entry<Character, Integer> entry : entries) {
+            if (entry.getValue() % 2 != 0) {
+                return num + 1;
+            }
+        }
+        return num;
+    }
+
+    /**
+     * 判断一个整数是否为回文数
+     * @param a 整数
+     * @return 是否为回文数
+     */
+    public boolean isIntegerPalindrome(int a) {
+        String str = String.valueOf(a);
+        if (str.length() == 1) {
+            return true;
+        }
+        int left = 0, right = str.length() - 1;
+        while (left <= right && str.charAt(left) == str.charAt(right)) {
+            left++;
+            right--;
+        }
+        return left > right;
+    }
 
     public String longestPalindrome(String s) {
         if (null == s || s.isEmpty()) {
@@ -35,13 +99,6 @@ public class LongestPalindrome {
             begin--;
             end++;
         }
-        String subStr = str.substring(begin + 1, end);
-        return subStr;
-    }
-
-    public static void main(String[] args) {
-        LongestPalindrome palindrome = new LongestPalindrome();
-        String result = palindrome.longestPalindrome("abcbacd");
-        System.out.println(result);
+        return str.substring(begin + 1, end);
     }
 }
