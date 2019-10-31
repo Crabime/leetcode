@@ -5,25 +5,55 @@ package cn.crabime.practice;
  */
 public class RemoveDuplicateItem {
 
-    // TODO: 10/30/19 完善该方法
+    /**
+     * 该方法在leetcode上执行通不过，很奇怪
+     * @param nums 原始数组
+     * @return 不重复元素值
+     */
     public int removeDuplicates(int[] nums) {
         if (nums.length == 1) {
             return 1;
         }
-
+        int[] array = new int[nums.length];
         int len = 1;
 
-        for (int i = 0; i < nums.length - 1;) {
-            for (int j = i + 1; j < nums.length; j++) {
+        for (int i = 0; i < nums.length;) {
+            int j = i + 1;
+            array[len - 1] = nums[i];
+            for (; j < nums.length; j++) {
                 if (nums[i] != nums[j]) {
                     len++;
                     i = j;
                     break;
                 }
             }
-            i++;
+            if (j == nums.length) {
+                break;
+            }
+
+        }
+        nums = array;
+        return len;
+    }
+
+    /**
+     * 使用双端指针方法来解决O(1)空间复杂度问题
+     */
+    public int removeDuplicatesUsingDoublePointer(int[] nums) {
+        if (nums.length == 1) {
+            return 1;
         }
 
-        return len;
+        int i = 0, j = 1;
+        while (j < nums.length) {
+            if (nums[i] == nums[j]) {
+                j++;
+            } else {
+                i++;
+                nums[i] = nums[j];
+                j++;
+            }
+        }
+        return i + 1;
     }
 }
