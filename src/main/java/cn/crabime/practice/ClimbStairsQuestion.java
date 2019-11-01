@@ -1,5 +1,8 @@
 package cn.crabime.practice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
  *
@@ -29,8 +32,37 @@ package cn.crabime.practice;
 // TODO: 2019/11/1 增加爬楼梯问题
 public class ClimbStairsQuestion {
 
-    public int climbStairs(int n) {
+    private Map<Integer, Integer> map = new HashMap<>();
 
-        return 0;
+    public int climbStairs(int n) {
+        if (map.get(n) != null) {
+            return map.get(n);
+        }
+        int result = 0;
+        if (n == 1) {
+            result = 1;
+        } else if (n == 2) {
+            result =  2;
+        } else {
+            result = climbStairs(n - 1) + climbStairs(n - 2);
+        }
+        map.put(n, result);
+        return result;
+    }
+
+    /**
+     * 采用动态规划思想完成最优解问题
+     */
+    public int climbStairsUsingDynamicProgramming(int n) {
+        if (n == 1) {
+            return 1;
+        }
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
     }
 }

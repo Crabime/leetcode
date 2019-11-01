@@ -5,15 +5,6 @@ package cn.crabime.practice;
  */
 public class MergeTwoSortedListQuestion {
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-    }
-
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
